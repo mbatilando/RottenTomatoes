@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F0AC3863-6D33-4CC5-AF75-8251526F57D3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RottenTomatoes</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4F27A47B9FFD8F5480030D13F17990469A944F2F</key>
+		<string>https://github.com/mbatilando/RottenTomatoes.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RottenTomatoes.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4F27A47B9FFD8F5480030D13F17990469A944F2F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mbatilando/RottenTomatoes.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4F27A47B9FFD8F5480030D13F17990469A944F2F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4F27A47B9FFD8F5480030D13F17990469A944F2F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RottenTomatoes</string>
+		</dict>
+	</array>
+</dict>
+</plist>
