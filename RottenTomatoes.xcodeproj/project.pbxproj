@@ -13,6 +13,7 @@
 		4C323BB81A81543000217336 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C323BB71A81543000217336 /* Images.xcassets */; };
 		4C323BBB1A81543000217336 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C323BB91A81543000217336 /* LaunchScreen.xib */; };
 		4C323BC71A81543000217336 /* RottenTomatoesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C323BC61A81543000217336 /* RottenTomatoesTests.swift */; };
+		4C5AE06E1A81D32E0016AE6E /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AE06D1A81D32E0016AE6E /* MovieDetailsViewController.swift */; };
 		4CA736B81A81C5830004D195 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA736B71A81C5830004D195 /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		4C323BC01A81543000217336 /* RottenTomatoesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RottenTomatoesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C323BC51A81543000217336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C323BC61A81543000217336 /* RottenTomatoesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RottenTomatoesTests.swift; sourceTree = "<group>"; };
+		4C5AE06D1A81D32E0016AE6E /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		4CA736B71A81C5830004D195 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 		4C323BAD1A81542F00217336 /* RottenTomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				4C5AE06D1A81D32E0016AE6E /* MovieDetailsViewController.swift */,
 				4C323BB01A81543000217336 /* AppDelegate.swift */,
 				4C323BB21A81543000217336 /* ViewController.swift */,
 				4CA736B71A81C5830004D195 /* MovieTableViewCell.swift */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C5AE06E1A81D32E0016AE6E /* MovieDetailsViewController.swift in Sources */,
 				4C323BB31A81543000217336 /* ViewController.swift in Sources */,
 				4C323BB11A81543000217336 /* AppDelegate.swift in Sources */,
 				4CA736B81A81C5830004D195 /* MovieTableViewCell.swift in Sources */,

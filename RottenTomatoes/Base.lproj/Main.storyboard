@@ -24,7 +24,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="14" y="0.0" width="75" height="21"/>
+                                                <rect key="frame" x="14" y="0.0" width="367" height="21"/>
                                             </variation>
                                         </label>
                                     </subviews>
@@ -50,10 +50,30 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Qcx-lR-9P8"/>
+                    <connections>
+                        <segue destination="Wbg-xv-M3X" kind="show" id="8Pt-jy-wwt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gda-Gv-UtT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2188.5" y="660"/>
+            <point key="canvasLocation" x="1513.5" y="656"/>
+        </scene>
+        <!--Movie Details View Controller-->
+        <scene sceneID="Mv1-n8-PSb">
+            <objects>
+                <viewController id="Wbg-xv-M3X" customClass="MovieDetailsViewController" customModule="RottenTomatoes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S4I-rI-ugI"/>
+                        <viewControllerLayoutGuide type="bottom" id="8PP-1d-kWW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AfW-7v-IVt">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="auD-9P-ln9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2280" y="656"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jfi-A5-MTv">
@@ -71,7 +91,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1s-Zj-86H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270.5" y="660"/>
+            <point key="canvasLocation" x="595.5" y="656"/>
         </scene>
     </scenes>
 </document>

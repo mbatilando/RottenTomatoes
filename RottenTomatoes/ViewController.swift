@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    
+    var movies: NSArray?
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -18,18 +20,31 @@ class ViewController: UITableViewController {
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:{ (response, data, error) in
             var errorValue: NSError? = nil
             let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
+            self.movies = dictionary["movies"] as NSArray
+            self.tableView.reloadData()
         })
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let array = movies {
+            return array.count
+        } else {
+            return 0
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let movie = self.movies![indexPath.row] as NSDictionary
         let cell = tableView.dequeueReusableCellWithIdentifier("com.MariBatilando.cell") as MovieTableViewCell
-        cell.movieTitleLabel.text = "Row \(indexPath.row)"
+        cell.movieTitleLabel.text = movie["title"] as NSString
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let details = MovieDetailsViewController()
+        let movie = self.movies![indexPath.row] as NSDictionary
+        details.moviedictionary = movie
+        self.navigationController?.pushViewController(details, animated: true)
+    }
 
 }
 
