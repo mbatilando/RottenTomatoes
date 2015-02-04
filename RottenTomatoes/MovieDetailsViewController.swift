@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-    var moviedictionary: NSDictionary?
+    var movie: NSDictionary?
     
     override func viewDidLoad() {
         super.viewDidLoad()

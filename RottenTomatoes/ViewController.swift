@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var movies: NSArray?
+    var chosenMovie: NSDictionary?
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -24,6 +25,7 @@ class ViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let array = movies {
             return array.count
@@ -39,11 +41,18 @@ class ViewController: UITableViewController {
         return cell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if String(segue.identifier!) == "showMovieDetails" {
+            let movieDetailsViewController = segue.destinationViewController as MovieDetailsViewController
+            movieDetailsViewController.movie = chosenMovie
+//        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let details = MovieDetailsViewController()
-        let movie = self.movies![indexPath.row] as NSDictionary
-        details.moviedictionary = movie
-        self.navigationController?.pushViewController(details, animated: true)
+        chosenMovie = self.movies![indexPath.row] as NSDictionary
+//        details.moviedictionary = movie
+//        self.navigationController?.pushViewController(details, animated: true)
     }
 
 }
