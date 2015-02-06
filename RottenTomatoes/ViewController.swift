@@ -38,19 +38,17 @@ class ViewController: UITableViewController {
         let movie = self.movies![indexPath.row] as NSDictionary
         let cell = tableView.dequeueReusableCellWithIdentifier("com.MariBatilando.cell") as MovieTableViewCell
         cell.movieTitleLabel.text = movie["title"] as NSString
-//        cell.movieActorLabel.text = movie["]
+//        cell.movieActorLabel.text = movie[""]
         cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger)
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
+        let mThumbnail = movie["posters"] as NSDictionary
+        let thumbnail = mThumbnail["thumbnail"] as NSString
+        let url = NSURL(string: thumbnail)
+        cell.movieImage.setImageWithURL(url)
         return cell
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if String(segue.identifier!) == "showMovieDetails" {
-//            let movieDetailsViewController = segue.destinationViewController as MovieDetailsViewController
-//            movieDetailsViewController.movie = chosenMovie
-//        }
-//    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let details = MovieDetailsViewController()
