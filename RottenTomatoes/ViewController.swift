@@ -38,21 +38,25 @@ class ViewController: UITableViewController {
         let movie = self.movies![indexPath.row] as NSDictionary
         let cell = tableView.dequeueReusableCellWithIdentifier("com.MariBatilando.cell") as MovieTableViewCell
         cell.movieTitleLabel.text = movie["title"] as NSString
+//        cell.movieActorLabel.text = movie["]
+        cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger)
+        let mRatings = movie["ratings"] as NSDictionary
+        cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        if String(segue.identifier!) == "showMovieDetails" {
-            let movieDetailsViewController = segue.destinationViewController as MovieDetailsViewController
-            movieDetailsViewController.movie = chosenMovie
+//            let movieDetailsViewController = segue.destinationViewController as MovieDetailsViewController
+//            movieDetailsViewController.movie = chosenMovie
 //        }
-    }
+//    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let details = MovieDetailsViewController()
         chosenMovie = self.movies![indexPath.row] as NSDictionary
-//        details.moviedictionary = movie
-//        self.navigationController?.pushViewController(details, animated: true)
+        details.movie = chosenMovie
+        self.navigationController?.pushViewController(details, animated: true)
     }
 
 }

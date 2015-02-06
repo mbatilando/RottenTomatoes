@@ -15,6 +15,7 @@
 		4C323BC71A81543000217336 /* RottenTomatoesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C323BC61A81543000217336 /* RottenTomatoesTests.swift */; };
 		4C5AE06E1A81D32E0016AE6E /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AE06D1A81D32E0016AE6E /* MovieDetailsViewController.swift */; };
 		4CA736B81A81C5830004D195 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA736B71A81C5830004D195 /* MovieTableViewCell.swift */; };
+		4CD815AC1A85836000C3CD14 /* bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD815AB1A85836000C3CD14 /* bridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		4C323BC61A81543000217336 /* RottenTomatoesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RottenTomatoesTests.swift; sourceTree = "<group>"; };
 		4C5AE06D1A81D32E0016AE6E /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		4CA736B71A81C5830004D195 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		4CD815AA1A85836000C3CD14 /* RottenTomatoes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RottenTomatoes-Bridging-Header.h"; sourceTree = "<group>"; };
+		4CD815AB1A85836000C3CD14 /* bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bridge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +89,11 @@
 				4C323BB21A81543000217336 /* ViewController.swift */,
 				4CA736B71A81C5830004D195 /* MovieTableViewCell.swift */,
 				4C323BB41A81543000217336 /* Main.storyboard */,
+				4CD815AB1A85836000C3CD14 /* bridge.m */,
 				4C323BB71A81543000217336 /* Images.xcassets */,
 				4C323BB91A81543000217336 /* LaunchScreen.xib */,
 				4C323BAE1A81543000217336 /* Supporting Files */,
+				4CD815AA1A85836000C3CD14 /* RottenTomatoes-Bridging-Header.h */,
 			);
 			path = RottenTomatoes;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C5AE06E1A81D32E0016AE6E /* MovieDetailsViewController.swift in Sources */,
+				4CD815AC1A85836000C3CD14 /* bridge.m in Sources */,
 				4C323BB31A81543000217336 /* ViewController.swift in Sources */,
 				4C323BB11A81543000217336 /* AppDelegate.swift in Sources */,
 				4CA736B81A81C5830004D195 /* MovieTableViewCell.swift in Sources */,
@@ -346,9 +352,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RottenTomatoes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RottenTomatoes/RottenTomatoes-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -357,9 +366,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RottenTomatoes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RottenTomatoes/RottenTomatoes-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
