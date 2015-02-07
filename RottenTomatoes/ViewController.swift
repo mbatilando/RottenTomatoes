@@ -12,17 +12,28 @@ class ViewController: UITableViewController {
     
     var movies: NSArray?
     var chosenMovie: NSDictionary?
+    var rc: UIRefreshControl!
     
+    @IBOutlet var moviesTableView: UITableView!
     
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        rc = UIRefreshControl()
+        rc.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        moviesTableView.insertSubview(rc, atIndex: 0)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
         super.viewDidAppear(animated)
-        fetchData()
+        SVProgressHUD.show()
+        fetchData({
+            SVProgressHUD.showSuccessWithStatus("Sucess!")
+        })
     }
     
-    func fetchData() {
-        SVProgressHUD.show()
+    func fetchData( closure: (()->())? ) {
         let YourApiKey = "esxztx7fqksg7psa53gd3wd5"
         let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=\(YourApiKey)"
         let request = NSMutableURLRequest(URL: NSURL(string: RottenTomatoesURLString)!)
@@ -31,7 +42,14 @@ class ViewController: UITableViewController {
             let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
             self.movies = dictionary["movies"] as NSArray
             self.tableView.reloadData()
-            SVProgressHUD.showSuccessWithStatus("Sucess!")
+            closure?()
+            
+        })
+    }
+    
+    func onRefresh() {
+        fetchData({
+            self.rc.endRefreshing()
         })
     }
 
