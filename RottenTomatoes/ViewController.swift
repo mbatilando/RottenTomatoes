@@ -12,8 +12,11 @@ class ViewController: UITableViewController {
     
     var movies: NSArray?
     var chosenMovie: NSDictionary?
+    
+    
 
     override func viewDidAppear(animated: Bool) {
+        SVProgressHUD.setBackgroundColor(UIColor.clearColor())
         super.viewDidAppear(animated)
         fetchData()
     }
@@ -28,7 +31,7 @@ class ViewController: UITableViewController {
             let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
             self.movies = dictionary["movies"] as NSArray
             self.tableView.reloadData()
-            SVProgressHUD.dismiss()
+            SVProgressHUD.showSuccessWithStatus("Sucess!")
         })
     }
 
