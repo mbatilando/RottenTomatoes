@@ -22,15 +22,17 @@ class ViewController: UITableViewController {
         rc = UIRefreshControl()
         rc.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         moviesTableView.insertSubview(rc, atIndex: 0)
+        
+        SVProgressHUD.show()
+        fetchData({
+            SVProgressHUD.showSuccessWithStatus("Sucess!")
+        }) 
     }
     
     override func viewDidAppear(animated: Bool) {
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
         super.viewDidAppear(animated)
-        SVProgressHUD.show()
-        fetchData({
-            SVProgressHUD.showSuccessWithStatus("Sucess!")
-        })
+        
     }
     
     func fetchData( closure: (()->())? ) {
@@ -70,8 +72,9 @@ class ViewController: UITableViewController {
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
         let mThumbnail = movie["posters"] as NSDictionary
-        let thumbnail = mThumbnail["thumbnail"] as NSString
-        let url = NSURL(string: thumbnail)
+        let thumbnail = mThumbnail["thumbnail"] as String
+        let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let url = NSURL(string: highDef)
         cell.movieImage.setImageWithURL(url)
         return cell
     }
