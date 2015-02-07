@@ -4,3 +4,4 @@
 
 #import <Foundation/Foundation.h>
 #import <UIImageView+AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>

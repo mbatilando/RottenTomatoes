@@ -15,6 +15,11 @@ class ViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        fetchData()
+    }
+    
+    func fetchData() {
+        SVProgressHUD.show()
         let YourApiKey = "esxztx7fqksg7psa53gd3wd5"
         let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=\(YourApiKey)"
         let request = NSMutableURLRequest(URL: NSURL(string: RottenTomatoesURLString)!)
@@ -23,6 +28,7 @@ class ViewController: UITableViewController {
             let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
             self.movies = dictionary["movies"] as NSArray
             self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         })
     }
 
