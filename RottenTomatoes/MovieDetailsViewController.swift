@@ -9,6 +9,15 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
+    
+    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var criticScoreLabel: UILabel!
+    @IBOutlet weak var audienceScoreLabel: UILabel!
+    @IBOutlet weak var actorsLabel: UILabel!
+    @IBOutlet weak var descriptionsLabel: UILabel!
+    
+    
     var movie: NSDictionary?
     
     override func viewDidLoad() {
@@ -20,8 +29,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     override func loadView() {
-        let myView = UIView(frame: CGRectZero)
-        myView.backgroundColor = UIColor.greenColor()
-        self.view = myView 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        SVProgressHUD.show()
+        super.viewDidAppear(animated)
+        
     }
 }
