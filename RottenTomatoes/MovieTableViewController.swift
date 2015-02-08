@@ -1,20 +1,22 @@
 //
-//  ViewController.swift
+//  MovieTableViewController.swift
 //  RottenTomatoes
 //
-//  Created by Mari Batilando on 2/3/15.
+//  Created by Mari Batilando on 2/7/15.
 //  Copyright (c) 2015 Mari Batilando. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UITableViewController {
+class MovieTableViewController: UITableViewController {
+    
+    @IBOutlet var moviesTableView: UITableView!
     
     var movies: NSArray?
     var chosenMovie: NSDictionary?
     var rc: UIRefreshControl!
     
-    @IBOutlet var moviesTableView: UITableView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +28,18 @@ class ViewController: UITableViewController {
         SVProgressHUD.show()
         fetchData({
             SVProgressHUD.showSuccessWithStatus("Sucess!")
-        }) 
+        })
     }
     
     override func viewDidAppear(animated: Bool) {
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
         super.viewDidAppear(animated)
+        
+        
+        SVProgressHUD.show()
+        fetchData({
+            SVProgressHUD.showSuccessWithStatus("Sucess!")
+        })
         
     }
     
@@ -54,7 +62,7 @@ class ViewController: UITableViewController {
             self.rc.endRefreshing()
         })
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let array = movies {
             return array.count
@@ -62,12 +70,12 @@ class ViewController: UITableViewController {
             return 0
         }
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let movie = self.movies![indexPath.row] as NSDictionary
         let cell = tableView.dequeueReusableCellWithIdentifier("com.MariBatilando.cell") as MovieTableViewCell
         cell.movieTitleLabel.text = movie["title"] as NSString
-//        cell.movieActorLabel.text = movie[""]
+        //        cell.movieActorLabel.text = movie[""]
         cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger)
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
@@ -75,17 +83,15 @@ class ViewController: UITableViewController {
         let thumbnail = mThumbnail["thumbnail"] as String
         let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
         let url = NSURL(string: highDef)
-        cell.movieImage.setImageWithURL(url)
+        cell.movieThumbnail.setImageWithURL(url)
         return cell
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let details = MovieDetailsViewController()
-        chosenMovie = self.movies![indexPath.row] as NSDictionary
-        details.movie = chosenMovie
-        self.navigationController?.pushViewController(details, animated: true)
-    }
-
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let details = MovieDetailsViewController()
+//        chosenMovie = self.movies![indexPath.row] as NSDictionary
+//        details.movie = chosenMovie
+//        self.navigationController?.pushViewController(details, animated: true)
+//    }
 }
-
