@@ -76,7 +76,7 @@ class MovieTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("com.MariBatilando.cell") as MovieTableViewCell
         cell.movieTitleLabel.text = movie["title"] as NSString
         //        cell.movieActorLabel.text = movie[""]
-        cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger)
+        cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger) + " min"
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
         let mThumbnail = movie["posters"] as NSDictionary
