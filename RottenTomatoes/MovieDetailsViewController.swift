@@ -15,9 +15,17 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var criticsScoreLabel: UILabel!
     @IBOutlet weak var audienceScoreLabel: UILabel!
     @IBOutlet weak var artistsLabel: UILabel!
-    @IBOutlet weak var movieDescriptionText: UITextView!
-    
+    @IBOutlet var rootViewContainer: UIView!
+    @IBOutlet weak var scrollViewContainer: UIScrollView!
+    @IBOutlet weak var movieDescriptionLabel: UILabel!
+
     var movie: NSDictionary?
+    
+//    override func viewDidLayoutSubviews(){
+//        super.viewDidLayoutSubviews()
+//        self.scrollViewContainer.layoutIfNeeded()
+//        self.scrollViewContainer.contentSize = self.rootViewContainer.bounds.size
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +35,7 @@ class MovieDetailsViewController: UIViewController {
             let mRatings = self.movie!["ratings"] as NSDictionary
             criticsScoreLabel.text = String(mRatings["critics_score"] as NSInteger)
             audienceScoreLabel.text = String(mRatings["audience_score"] as NSInteger)
-            movieDescriptionText.text = self.movie!["synopsis"] as NSString
+            movieDescriptionLabel.text = self.movie!["synopsis"] as NSString
             
             let actorsArray = self.movie!["abridged_cast"] as NSArray
             let numActors = actorsArray.count > 3 ? 3 : actorsArray.count
@@ -47,12 +55,14 @@ class MovieDetailsViewController: UIViewController {
             let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
             let highResUrl = NSURL(string: highDef)
             let highResUrlRequest = NSURLRequest(URL: highResUrl!)
-
-            
-            
-            //For some reason, this won't work
             loadImage(url: lowUrlRequest, imageView: self.movieImage, {
                 self.loadImage(url: highResUrlRequest, imageView: self.movieImage, closure: {})
+                
+                self.scrollViewContainer.layoutIfNeeded()
+                self.scrollViewContainer.contentSize = self.rootViewContainer.bounds.size
+                self.movieDescriptionLabel.numberOfLines = 99
+                self.movieDescriptionLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+                
             })
         }
     }
