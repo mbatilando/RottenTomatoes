@@ -22,16 +22,6 @@ class MovieTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Hidden Network Error
-//        let screenSize: CGRect = UIScreen.mainScreen().bounds
-//        let parentView: CGRect = CGRectMake(0, 0, screenSize.width, 30)
-//        
-//        
-//        
-//        let networkError = UIView(frame: parentView)
-//        networkError.backgroundColor = UIColor.greenColor()
-//        self.view.addSubview(networkError)
-        
         // Refresh Control
         rc = UIRefreshControl()
         rc.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
@@ -53,17 +43,17 @@ class MovieTableViewController: UITableViewController {
         let YourApiKey = "esxztx7fqksg7psa53gd3wd5"
         let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=\(YourApiKey)"
         let request = NSMutableURLRequest(URL: NSURL(string: RottenTomatoesURLString)!)
+
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:{ (response, data, error) in
-            
-            if error != nil {
-                self.networkErrorViewContainer.hidden = false
-                SVProgressHUD.showSuccessWithStatus("Failed")
-            } else {
+            if error == nil {
                 var errorValue: NSError? = nil
                 let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
                 self.movies = dictionary["movies"] as NSArray
                 self.tableView.reloadData()
                 closure?()
+            } else {
+                self.networkErrorViewContainer.hidden = false
+                SVProgressHUD.showSuccessWithStatus("Failed")
             }
         })
     }
@@ -77,9 +67,8 @@ class MovieTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let array = movies {
             return array.count
-        } else {
-            return 0
         }
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -90,11 +79,25 @@ class MovieTableViewController: UITableViewController {
         cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger) + " min"
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
+        
         let mThumbnail = movie["posters"] as NSDictionary
         let thumbnail = mThumbnail["thumbnail"] as String
         let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
         let url = NSURL(string: highDef)
-        cell.movieThumbnail.setImageWithURL(url)
+        let mUrl = NSURLRequest(URL: url!)
+        let placeholder = UIImage(named: "MoviePlaceholder")
+        
+        cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: placeholder,
+            success:{ (request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
+                cell.movieThumbnail.alpha = 0
+                cell.movieThumbnail.image = image
+                UIView.animateWithDuration(0.7, animations: {
+                    cell.movieThumbnail.alpha = 1.0
+                })
+            },
+            failure: { (request: NSURLRequest!,response: NSHTTPURLResponse!, error: NSError!) -> Void in
+            })
+        
         return cell
     }
     
@@ -105,12 +108,4 @@ class MovieTableViewController: UITableViewController {
             let row = myIndexPath?.row
             detailViewController.movie = self.movies![row!] as NSDictionary
     }
-    
-    
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let details = MovieDetailsViewController()
-//        chosenMovie = self.movies![indexPath.row] as NSDictionary
-//        details.movie = chosenMovie
-//        self.navigationController?.pushViewController(details, animated: true)
-//    }
 }
