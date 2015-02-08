@@ -80,6 +80,16 @@ class MovieTableViewController: UITableViewController {
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
         
+        let actorsArray = movie["abridged_cast"] as NSArray
+        let numActors = actorsArray.count > 3 ? 3 : actorsArray.count
+        var topActors = ""
+        for i in 0..<numActors {
+            var actorObj = actorsArray[i] as NSDictionary
+            topActors += actorObj["name"] as NSString + ", "
+        }
+        
+        cell.movieActorsLabel.text = topActors
+        
         let mThumbnail = movie["posters"] as NSDictionary
         let thumbnail = mThumbnail["thumbnail"] as String
         let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -88,7 +98,7 @@ class MovieTableViewController: UITableViewController {
         let placeholder = UIImage(named: "MoviePlaceholder")
         
         cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: placeholder,
-            success: {(request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
+            success:{(request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
                 cell.movieThumbnail.alpha = 0
                 cell.movieThumbnail.image = image
                 UIView.animateWithDuration(0.7, animations: {

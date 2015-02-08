@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RottenTomatoes/MovieDetailsViewController.swift"
-            timestampString = "445116651.786776"
+            timestampString = "445119215.236428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79">
+            startingLineNumber = "81"
+            endingLineNumber = "81">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RottenTomatoes/MovieDetailsViewController.swift"
-            timestampString = "445116651.786776"
+            timestampString = "445119215.236428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80">
+            startingLineNumber = "82"
+            endingLineNumber = "82">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

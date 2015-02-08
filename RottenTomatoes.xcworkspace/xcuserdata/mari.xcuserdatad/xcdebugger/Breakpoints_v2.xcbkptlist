@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RottenTomatoes/MovieDetailsViewController.swift"
-            timestampString = "445116651.786776"
+            timestampString = "445119215.236428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90">
+            startingLineNumber = "92"
+            endingLineNumber = "92">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,6 +46,22 @@
             startingLineNumber = "58"
             endingLineNumber = "58"
             landmarkName = "fetchData(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RottenTomatoes/MovieTableViewController.swift"
+            timestampString = "445119493.727723"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

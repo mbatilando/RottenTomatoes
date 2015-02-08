@@ -27,6 +27,17 @@ class MovieDetailsViewController: UIViewController {
             let mRatings = self.movie!["ratings"] as NSDictionary
             criticsScoreLabel.text = String(mRatings["critics_score"] as NSInteger)
             audienceScoreLabel.text = String(mRatings["audience_score"] as NSInteger)
+            movieDescriptionLabel.text = self.movie!["synopsis"] as NSString
+            
+            let actorsArray = self.movie!["abridged_cast"] as NSArray
+            let numActors = actorsArray.count > 3 ? 3 : actorsArray.count
+            var topActors = ""
+            for i in 0..<numActors {
+                var actorObj = actorsArray[i] as NSDictionary
+                topActors += actorObj["name"] as NSString + ", "
+            }
+            
+            artistsLabel.text = topActors
             
             
             let mThumbnail = self.movie!["posters"] as NSDictionary
