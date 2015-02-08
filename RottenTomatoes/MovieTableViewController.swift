@@ -13,6 +13,7 @@ class MovieTableViewController: UITableViewController {
     @IBOutlet var moviesTableView: UITableView!
     @IBOutlet weak var networkErrorViewContainer: UIView!
     
+    
     var movies: NSArray?
     var chosenMovie: NSDictionary?
     var rc: UIRefreshControl!

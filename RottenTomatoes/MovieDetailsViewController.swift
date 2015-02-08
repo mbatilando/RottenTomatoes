@@ -21,11 +21,11 @@ class MovieDetailsViewController: UIViewController {
 
     var movie: NSDictionary?
     
-//    override func viewDidLayoutSubviews(){
-//        super.viewDidLayoutSubviews()
-//        self.scrollViewContainer.layoutIfNeeded()
-//        self.scrollViewContainer.contentSize = self.rootViewContainer.bounds.size
-//    }
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        self.scrollViewContainer.layoutIfNeeded()
+        self.scrollViewContainer.contentSize = self.rootViewContainer.bounds.size
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,11 +57,6 @@ class MovieDetailsViewController: UIViewController {
             let highResUrlRequest = NSURLRequest(URL: highResUrl!)
             loadImage(url: lowUrlRequest, imageView: self.movieImage, {
                 self.loadImage(url: highResUrlRequest, imageView: self.movieImage, closure: {})
-                
-                self.scrollViewContainer.layoutIfNeeded()
-                self.scrollViewContainer.contentSize = self.rootViewContainer.bounds.size
-                self.movieDescriptionLabel.numberOfLines = 99
-                self.movieDescriptionLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 
             })
         }
