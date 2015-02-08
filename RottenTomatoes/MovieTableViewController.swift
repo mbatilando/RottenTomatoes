@@ -11,6 +11,7 @@ import UIKit
 class MovieTableViewController: UITableViewController {
     
     @IBOutlet var moviesTableView: UITableView!
+    @IBOutlet weak var networkErrorViewContainer: UIView!
     
     var movies: NSArray?
     var chosenMovie: NSDictionary?
@@ -21,10 +22,22 @@ class MovieTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hidden Network Error
+//        let screenSize: CGRect = UIScreen.mainScreen().bounds
+//        let parentView: CGRect = CGRectMake(0, 0, screenSize.width, 30)
+//        
+//        
+//        
+//        let networkError = UIView(frame: parentView)
+//        networkError.backgroundColor = UIColor.greenColor()
+//        self.view.addSubview(networkError)
+        
+        // Refresh Control
         rc = UIRefreshControl()
         rc.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         moviesTableView.insertSubview(rc, atIndex: 0)
         
+        // Fetching Data and HUD
         SVProgressHUD.show()
         fetchData({
             SVProgressHUD.showSuccessWithStatus("Sucess!")
@@ -34,13 +47,6 @@ class MovieTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
         super.viewDidAppear(animated)
-        
-        
-        SVProgressHUD.show()
-        fetchData({
-            SVProgressHUD.showSuccessWithStatus("Sucess!")
-        })
-        
     }
     
     func fetchData( closure: (()->())? ) {
@@ -48,12 +54,17 @@ class MovieTableViewController: UITableViewController {
         let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=\(YourApiKey)"
         let request = NSMutableURLRequest(URL: NSURL(string: RottenTomatoesURLString)!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:{ (response, data, error) in
-            var errorValue: NSError? = nil
-            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
-            self.movies = dictionary["movies"] as NSArray
-            self.tableView.reloadData()
-            closure?()
             
+            if error != nil {
+                self.networkErrorViewContainer.hidden = false
+                SVProgressHUD.showSuccessWithStatus("Failed")
+            } else {
+                var errorValue: NSError? = nil
+                let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary
+                self.movies = dictionary["movies"] as NSArray
+                self.tableView.reloadData()
+                closure?()
+            }
         })
     }
     
