@@ -88,14 +88,15 @@ class MovieTableViewController: UITableViewController {
         let placeholder = UIImage(named: "MoviePlaceholder")
         
         cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: placeholder,
-            success:{ (request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
+            success: {(request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
                 cell.movieThumbnail.alpha = 0
                 cell.movieThumbnail.image = image
                 UIView.animateWithDuration(0.7, animations: {
                     cell.movieThumbnail.alpha = 1.0
                 })
             },
-            failure: { (request: NSURLRequest!,response: NSHTTPURLResponse!, error: NSError!) -> Void in
+            failure: {
+                (request: NSURLRequest!,response: NSHTTPURLResponse!, error: NSError!) -> Void in
             })
         
         return cell

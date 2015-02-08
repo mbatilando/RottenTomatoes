@@ -27,11 +27,33 @@ class MovieDetailsViewController: UIViewController {
             let mRatings = self.movie!["ratings"] as NSDictionary
             criticsScoreLabel.text = String(mRatings["critics_score"] as NSInteger)
             audienceScoreLabel.text = String(mRatings["audience_score"] as NSInteger)
+            
+            
             let mThumbnail = self.movie!["posters"] as NSDictionary
             let thumbnail = mThumbnail["thumbnail"] as String
+            let lowResUrl = NSURL(string: thumbnail)
+            let lowUrlRequest = NSURLRequest(URL: lowResUrl!)
             let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            let url = NSURL(string: highDef)
-            movieImage.setImageWithURL(url)
+            let highResUrl = NSURL(string: highDef)
+            let highResUrlRequest = NSURLRequest(URL: highResUrl!)
+
+            
+            
+            //For some reason, this won't work
+            loadImage(url: lowUrlRequest, imageView: self.movieImage, {
+                self.loadImage(url: highResUrlRequest, imageView: self.movieImage, closure: {})
+            })
         }
+    }
+    
+    func loadImage(#url: NSURLRequest, imageView: UIImageView, closure: (() -> ())?) {
+        imageView.setImageWithURLRequest(url, placeholderImage: nil,
+            success: {(request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
+                imageView.image = image
+                closure?()
+            },
+            failure: {
+                (request: NSURLRequest!,response: NSHTTPURLResponse!, error: NSError!) -> Void in
+        })
     }
 }
