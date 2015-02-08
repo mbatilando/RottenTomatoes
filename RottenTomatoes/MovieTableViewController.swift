@@ -87,6 +87,14 @@ class MovieTableViewController: UITableViewController {
         return cell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue,
+        sender: AnyObject?) {
+            let detailViewController = segue.destinationViewController as MovieDetailsViewController
+            let myIndexPath = self.tableView.indexPathForSelectedRow()
+            let row = myIndexPath?.row
+            detailViewController.movie = self.movies![row!] as NSDictionary
+    }
+    
     
 //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        let details = MovieDetailsViewController()

@@ -17,5 +17,14 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieDescriptionLabel: UILabel!
     @IBOutlet weak var artistsLabel: UILabel!
     
+    var movie: NSDictionary?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if self.movie != nil {
+            movieTitleLabel.text = self.movie!["title"] as NSString
+//            criticsScoreLabel.text = String(mRatings["critics_score"] as NSInteger)
+        }
+    }
 }
