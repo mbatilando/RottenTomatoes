@@ -47,7 +47,8 @@ class MovieDetailsViewController: UIViewController {
                 topActors += actorObj["name"] as NSString + ", "
             }
             
-            artistsLabel.text = topActors
+            artistsLabel.text = topActors.substringToIndex(advance(topActors.startIndex, countElements(topActors)-2))
+
             
             
             let mThumbnail = self.movie!["posters"] as NSDictionary

@@ -76,7 +76,6 @@ class MovieTableViewController: UITableViewController {
         let movie = self.movies![indexPath.row] as NSDictionary
         let cell = tableView.dequeueReusableCellWithIdentifier("com.MariBatilando.cell") as MovieTableViewCell
         cell.movieTitleLabel.text = movie["title"] as NSString
-        //        cell.movieActorLabel.text = movie[""]
         cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger) + " min"
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
@@ -84,14 +83,14 @@ class MovieTableViewController: UITableViewController {
         cell.mpaaRatingLabel.text = movie["mpaa_rating"] as NSString
         
         let actorsArray = movie["abridged_cast"] as NSArray
-        let numActors = actorsArray.count > 3 ? 3 : actorsArray.count
+        let numActors = actorsArray.count > 2 ? 2 : actorsArray.count
         var topActors = ""
         for i in 0..<numActors {
             var actorObj = actorsArray[i] as NSDictionary
             topActors += actorObj["name"] as NSString + ", "
         }
         
-        cell.movieActorsLabel.text = topActors
+        cell.movieActorsLabel.text = topActors.substringToIndex(advance(topActors.startIndex, countElements(topActors)-2))
         
         let mThumbnail = movie["posters"] as NSDictionary
         let thumbnail = mThumbnail["thumbnail"] as String
@@ -99,7 +98,6 @@ class MovieTableViewController: UITableViewController {
         let url = NSURL(string: highDef)
         let mUrl = NSURLRequest(URL: url!)
         //Couldn't modify aspect ratio of placeholder img
-        //let placeholder = UIImage(named: "MoviePlaceholder")
         cell.movieThumbnail.image = nil
         
         cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: nil,
