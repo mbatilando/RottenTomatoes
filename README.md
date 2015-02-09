@@ -7,7 +7,7 @@ RottenTomatoes Swift iOS App
 ### Which required and optional stories have you completed?
 	- All images fade in
 	- For the large poster, load the low-res image first, switch to high-res when complete
-	- Customize the highlight of the cell.
+	- Customize the text highlight of the cell.
 	- Customize the navigation bar.
 
 ### GIF walkthrough of all required and optional stories (using LiceCap)
