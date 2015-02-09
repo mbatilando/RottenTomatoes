@@ -98,9 +98,10 @@ class MovieTableViewController: UITableViewController {
         let highDef = thumbnail.stringByReplacingOccurrencesOfString("_tmb", withString: "_ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
         let url = NSURL(string: highDef)
         let mUrl = NSURLRequest(URL: url!)
-        let placeholder = UIImage(named: "MoviePlaceholder")
+        //Couldn't modify aspect ratio of placeholder img
+        //let placeholder = UIImage(named: "MoviePlaceholder")
         
-        cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: placeholder,
+        cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: nil,
             success:{(request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
                 cell.movieThumbnail.alpha = 0
                 cell.movieThumbnail.image = image
