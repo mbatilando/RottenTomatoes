@@ -100,6 +100,7 @@ class MovieTableViewController: UITableViewController {
         let mUrl = NSURLRequest(URL: url!)
         //Couldn't modify aspect ratio of placeholder img
         //let placeholder = UIImage(named: "MoviePlaceholder")
+        cell.movieThumbnail.image = nil
         
         cell.movieThumbnail.setImageWithURLRequest(mUrl, placeholderImage: nil,
             success:{(request: NSURLRequest!,response: NSHTTPURLResponse!, image: UIImage!) -> Void in
