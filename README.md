@@ -11,3 +11,4 @@ RottenTomatoes Swift iOS App
 	- Customize the navigation bar.
 
 ### GIF walkthrough of all required and optional stories (using LiceCap)
+![GIF](https://raw.github.com/mbatilando/tipMeMari/master/RottenTomatoes.gif)
