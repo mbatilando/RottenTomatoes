@@ -80,6 +80,8 @@ class MovieTableViewController: UITableViewController {
         cell.movieLengthLabel.text = String(movie["runtime"] as NSInteger) + " min"
         let mRatings = movie["ratings"] as NSDictionary
         cell.movieRatingLabel.text = String(mRatings["critics_score"] as NSInteger)
+        cell.movieAudienceRatingLabel.text = String(mRatings["audience_score"] as NSInteger)
+        cell.mpaaRatingLabel.text = movie["mpaa_rating"] as NSString
         
         let actorsArray = movie["abridged_cast"] as NSArray
         let numActors = actorsArray.count > 3 ? 3 : actorsArray.count

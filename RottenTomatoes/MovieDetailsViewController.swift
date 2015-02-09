@@ -18,6 +18,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var rootViewContainer: UIView!
     @IBOutlet weak var scrollViewContainer: UIScrollView!
     @IBOutlet weak var movieDescriptionLabel: UILabel!
+    @IBOutlet weak var mpaaRatingsLabel: UILabel!
 
     var movie: NSDictionary?
     
@@ -31,6 +32,7 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         if self.movie != nil {
+            mpaaRatingsLabel.text = self.movie!["mpaa_rating"] as NSString
             movieTitleLabel.text = self.movie!["title"] as NSString
             let mRatings = self.movie!["ratings"] as NSDictionary
             criticsScoreLabel.text = String(mRatings["critics_score"] as NSInteger)

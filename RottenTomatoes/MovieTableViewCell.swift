@@ -15,5 +15,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieRatingLabel: UILabel!
     @IBOutlet weak var movieActorsLabel: UILabel!
     @IBOutlet weak var movieLengthLabel: UILabel!
+    @IBOutlet weak var movieAudienceRatingLabel: UILabel!
+    @IBOutlet weak var mpaaRatingLabel: UILabel!
    
 }
